@@ -34,7 +34,7 @@ build_script:
 
       cd ../
 
-      rm -fr neon
+      rm -fr neon_installer
 
       git clone keybase://private/kenkit/neon_installer
 
