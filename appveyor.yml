@@ -32,8 +32,30 @@ build_script:
 
       git config --global --add protocol.keybase.allow always
 
+      set ROOT=%cd%
+      
       cd ../
-
+    
+      IF NOT EXIST  "qt-everywhere-opensource-src-4.8.7" 
+      (curl -L --progress-bar --insecure "https://www.dropbox.com/s/g5o8v8j0ocllvld/encrypted.cont?dl=1" -o encrypted.cont && keybase decrypt -i encrypted.cont -o  qt-everywhere-opensource-src-4.8.7_build.zip  && call 7z x qt-everywhere-opensource-src-4.8.7_build.zip)
+      
+      
+      cd qt-everywhere-opensource-src-4.8.7
+      
+      set QTDIR=%cd%\
+      
+      cd bin
+      
+      set QT_BIN=%cd%\
+      
+      set PATH=%PATH%;%cd%
+      
+      dir .
+      
+      set OPENSSL_ROOT_DIR=C:\OpenSSL-Win32\
+    
+      cd %ROOT%
+      
       rm -fr neon_installer
 
       git clone keybase://private/kenkit/neon_installer
