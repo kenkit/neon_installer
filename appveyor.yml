@@ -16,11 +16,7 @@ build_script:
 
       curl -fsS -o keybase_setup_amd64.msi "https://prerelease.keybase.io/keybase_setup_amd64.msi"
 
-      REM curl -fsS -o cef_binary_3.3578.1860.g36610bd_windows32.tar.bz2 "http://opensource.spotify.com/cefbuilds/cef_binary_3.3578.1860.g36610bd_windows32.tar.bz2"
-
       start /wait msiexec.exe /i keybase_setup_amd64.msi   /quiet /l*v keybase.log
-
-      REM type keybase.log
 
       set PATH=%PATH%;%localappdata%\Keybase\
 
@@ -28,7 +24,7 @@ build_script:
 
       echo "loging in to keybase"
 
-      keybase oneshot -u kenkit --paperkey "%paperkey%"
+      call keybase oneshot -u kenkit --paperkey "%paperkey%"
 
       git config --global --add protocol.keybase.allow always
 
@@ -55,7 +51,7 @@ build_script:
       set OPENSSL_ROOT_DIR=C:\OpenSSL-Win32\
     
       cd %ROOT%
-      
+
       rm -fr neon_installer
 
       git clone keybase://private/kenkit/neon_installer
