@@ -36,37 +36,15 @@ build_script:
 
       rm -fr neon
 
-      git clone keybase://private/kenkit/neon
+      git clone keybase://private/kenkit/neon_installer
 
-      cd neon
+      cd neon_installer
 
       git submodule update --init --recursive
-
-      REM echo "FFMPEG DIR:%FFMPEG%" 
-
-      REM call 7z x  -y -r ffmpeg_dependancies.zip
-
-      REM call 7z x  -y -r "cef_binary_3.3578.1860.g36610bd_windows32.tar.bz2" && REM call 7z x  -y -r  "cef_binary_3.3578.1860.g36610bd_windows32.tar"
-
-      REM set CEF_ROOT=%cd%\cef_binary_3.3578.1860.g36610bd_windows32
-
-      REM copy /b/v/y imgui-files\cef_macros.cmake %CEF_ROOT%\cmake
-
-      REM copy /b/v/y imgui-files\cef_variables.cmake %CEF_ROOT%\cmake
 
       mkdir build
 
       cd build
-
-      REM mkdir OGRE
-
-      REM set OGRE_DIR=%cd%\OGRE\build\sdk\CMake
-
-      REM set OGRE_HOME=%cd%\OGRE
-
-      REM set SDL2_DIR=%OGRE_HOME%\build\sdk\ogredeps\cmake
-
-      REM echo "Ogre:%OGRE_DIR%"
 
       set BOOST_ROOT=C:\Libraries\boost_1_67_0
 
@@ -101,5 +79,5 @@ deploy:
     description: $(release_description)
     auth_token:
       secure: 01oN0sew4MzhHwKsFR7WSabMnqgCt2gZtjS6ywYslcnGyt7XFnOIbzNBfwSTV1Xc
-    repository: kenkit/neon
+    repository: kenkit/neon_installer
     artifact: NeonInstaller-win32.msi
