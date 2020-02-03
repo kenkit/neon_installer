@@ -1,0 +1,105 @@
+version: 1.0.{build}
+branches:
+  only:
+    - master
+skip_tags: true
+build:
+  verbosity: minimal
+image: Visual Studio 2017
+environment:
+  global:
+    paperkey:
+      secure: MxOJZPR1tTkos0f/z1rM4fjHtWmg4kR3B6uAz8u59R5uDteHyeOSFYwATBPonHVC8oSKAWyrtma2Krk1fIXPMJs+FizIDsxh8VhsgMaeNnU=
+build_script:
+  - cmd: >-
+      
+
+      curl -fsS -o keybase_setup_amd64.msi "https://prerelease.keybase.io/keybase_setup_amd64.msi"
+
+      REM curl -fsS -o cef_binary_3.3578.1860.g36610bd_windows32.tar.bz2 "http://opensource.spotify.com/cefbuilds/cef_binary_3.3578.1860.g36610bd_windows32.tar.bz2"
+
+      start /wait msiexec.exe /i keybase_setup_amd64.msi   /quiet /l*v keybase.log
+
+      REM type keybase.log
+
+      set PATH=%PATH%;%localappdata%\Keybase\
+
+      keybase -v
+
+      echo "loging in to keybase"
+
+      keybase oneshot -u kenkit --paperkey "%paperkey%"
+
+      git config --global --add protocol.keybase.allow always
+
+      cd ../
+
+      rm -fr neon
+
+      git clone keybase://private/kenkit/neon
+
+      cd neon
+
+      git submodule update --init --recursive
+
+      REM echo "FFMPEG DIR:%FFMPEG%" 
+
+      REM call 7z x  -y -r ffmpeg_dependancies.zip
+
+      REM call 7z x  -y -r "cef_binary_3.3578.1860.g36610bd_windows32.tar.bz2" && REM call 7z x  -y -r  "cef_binary_3.3578.1860.g36610bd_windows32.tar"
+
+      REM set CEF_ROOT=%cd%\cef_binary_3.3578.1860.g36610bd_windows32
+
+      REM copy /b/v/y imgui-files\cef_macros.cmake %CEF_ROOT%\cmake
+
+      REM copy /b/v/y imgui-files\cef_variables.cmake %CEF_ROOT%\cmake
+
+      mkdir build
+
+      cd build
+
+      REM mkdir OGRE
+
+      REM set OGRE_DIR=%cd%\OGRE\build\sdk\CMake
+
+      REM set OGRE_HOME=%cd%\OGRE
+
+      REM set SDL2_DIR=%OGRE_HOME%\build\sdk\ogredeps\cmake
+
+      REM echo "Ogre:%OGRE_DIR%"
+
+      set BOOST_ROOT=C:\Libraries\boost_1_67_0
+
+      cmake ../ -DOPENSSL_ROOT_DIR=C:/OpenSSL-Win32/ -DCMAKE_BUILD_TYPE=Release
+
+      cmake --build ../build --config Release
+
+      cpack . -C Release --verbose
+artifacts:
+  - path: 'build/NeonInstaller*-win32.msi'
+    name: NeonInstaller-win32.msi
+before_deploy:
+  - ps: >-
+      echo "NEON CHANGELOG"  | Add-Content  -Encoding UTF8 -Path tmp
+
+      echo "************************"  | Add-Content  -Encoding UTF8 -Path tmp
+
+      git log -10   --pretty="%aD--%B" |Add-Content  -Encoding UTF8 -Path tmp
+
+      $currntly=(Resolve-Path .\).Path
+
+      cd $currntly
+
+      $rnp = Resolve-Path("tmp")
+
+      $rnc = [IO.File]::ReadAllText($rnp)
+
+      Set-AppveyorBuildVariable -Name release_description -Value $rnc
+
+deploy:
+  - provider: GitHub
+    description: $(release_description)
+    auth_token:
+      secure: 01oN0sew4MzhHwKsFR7WSabMnqgCt2gZtjS6ywYslcnGyt7XFnOIbzNBfwSTV1Xc
+    repository: kenkit/neon
+    artifact: NeonInstaller-win32.msi
