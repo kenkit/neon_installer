@@ -70,11 +70,11 @@ build_script:
 
       cmake ../ -DOPENSSL_ROOT_DIR=C:/OpenSSL-Win32/ -DCMAKE_BUILD_TYPE=Release -DQT_MOC_EXECUTABLE=%QT_BIN%\moc.exe -DQT_RCC_EXECUTABLE=%QT_BIN%\rcc.exe -DQT_UIC_EXECUTABLE=%QT_BIN%\uic.exe 
 
-      cmake --build ../build --config Release
+      cmake --build ../build --config Release -j2
 
-      cpack . -C Release --verbose
+      cpack . -C Release
 artifacts:
-  - path: 'build/NeonUpdater*-win32.msi'
+  - path: 'neon_installer/build/NeonUpdater*-win32.msi'
     name: NeonUpdater-win32.msi
 before_deploy:
   - ps: >-
