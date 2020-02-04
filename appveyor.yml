@@ -74,8 +74,8 @@ build_script:
 
       cpack . -C Release --verbose
 artifacts:
-  - path: 'build/NeonInstaller*-win32.msi'
-    name: NeonInstaller-win32.msi
+  - path: 'build/NeonUpdater*-win32.msi'
+    name: NeonUpdater-win32.msi
 before_deploy:
   - ps: >-
       echo "NEON CHANGELOG"  | Add-Content  -Encoding UTF8 -Path tmp
