@@ -9,9 +9,9 @@ Neon was designed by Neon Itelligence.
 
 ## Installation
 
-Just download the zip file from the release tab on our github repo.
+Just download the setup file from the release tab on our github repo.
 
-We are working on an automated updater
+This setup will install all required files
 
 
 ## Developers
