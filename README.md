@@ -3,7 +3,7 @@
 [![GitHub release](https://img.shields.io/github/release/kenkit/neon_installer.svg)](https://github.com/kenkit/neon_installer/releases/latest)
 [![Build status](https://ci.appveyor.com/api/projects/status/9uylnkxovxl7cy8d?svg=true)](https://ci.appveyor.com/project/kenkit/neon-installer)
 [![code-size](https://img.shields.io/github/languages/code-size/kenkit/neon_installer.svg?color=44cc11)](https://img.shields.io/github/languages/code-size/kenkit/neon_installer.svg?color=44cc11)
-[![[GitHub All Releases](https://img.shields.io/github/downloads/kenkit/neon_installer/total.svg?style=plastic)](https://github.com/kenkit/neon_installer/releases/latest)
+
 Neon was designed by Neon Itelligence.
 
 ## Installation
