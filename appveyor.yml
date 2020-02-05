@@ -100,4 +100,4 @@ deploy:
     auth_token:
       secure: 01oN0sew4MzhHwKsFR7WSabMnqgCt2gZtjS6ywYslcnGyt7XFnOIbzNBfwSTV1Xc
     repository: kenkit/neon_installer
-    artifact: NeonInstaller-win32.msi
+    artifact: NeonUpdater-win32.msi
