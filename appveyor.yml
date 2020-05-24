@@ -68,7 +68,7 @@ build_script:
 
       set BOOST_ROOT=C:\Libraries\boost_1_71_0
 
-      cmake  -A Win32 ../ -DBOOST_ROOT=%BOOST_ROOT% -DOPENSSL_ROOT_DIR=C:/OpenSSL-Win32/ -DCMAKE_BUILD_TYPE=Release -DQT_MOC_EXECUTABLE=%QT_BIN%\moc.exe -DQT_RCC_EXECUTABLE=%QT_BIN%\rcc.exe -DQT_UIC_EXECUTABLE=%QT_BIN%\uic.exe -DCMAKE_USE_WINSSL=1 -DCMAKE_USE_OPENSSL=0 -DBUILD_TESTING=0 -DBUILD_SHARED_LIBS=1   -DVERSION_URL=https://ci.appveyor.com/api/projects/kenkit/neon-installer
+      cmake  -A Win32 ../ -DBOOST_ROOT=%BOOST_ROOT% -DOPENSSL_ROOT_DIR=C:/OpenSSL-Win32/ -DCMAKE_BUILD_TYPE=Release -DQT_MOC_EXECUTABLE=%QT_BIN%\moc.exe -DQT_RCC_EXECUTABLE=%QT_BIN%\rcc.exe -DQT_UIC_EXECUTABLE=%QT_BIN%\uic.exe -DCMAKE_USE_WINSSL=1 -DCMAKE_USE_OPENSSL=0 -DBUILD_TESTING=0 -DBUILD_SHARED_LIBS=1  -DVERSION_URL="https://ci.appveyor.com/api/projects/kenkit/neon-installer"
 
       cmake --build ../build --config Release -j2
 
